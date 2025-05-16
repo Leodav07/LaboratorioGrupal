@@ -92,20 +92,20 @@ public class ProyectoGrupal {
 
                     String fraseReemplazada = frase2.replaceAll("[,.?!\"]", "");
 
-                    for (int i = 0; i < fraseReemplazada.length(); i++) {
+                    for (int i = 0; i < fraseReemplazada.length(); i++) {  // Recorre toda la frase
                         letrasFrase = fraseReemplazada.charAt(i);
-                        if (letrasFrase != ' ') {
+                        if (letrasFrase != ' ') {                           // Separa las palabras mediante los espacios
                             palabras += letrasFrase;
                         } else {
                             if (palabras.length() > longitud) {
-                                palabrasUnidas += palabras + "\n";
+                                palabrasUnidas += "-"+ palabras + "\n";
                             }
                             palabras = "";
                         }
 
                     }
                     if (palabras.length() > longitud) {
-                        palabrasUnidas += palabras + "\n";
+                        palabrasUnidas += "-" + palabras + "\n";
                     } else {
                         palabras = "";
                     }
@@ -140,16 +140,16 @@ public class ProyectoGrupal {
                                  letrasImpar = "";
                                 textoEncriptado = "";
                                 char letra = ' ';
-                                for (int i = 0; i < palabra.length(); i++) {
+                                for (int i = 0; i < palabra.length(); i++) {    
                                     letra = palabra.charAt(i);
-                                    if (i % 2 == 0) {
+                                    if (i % 2 == 0) {                         // Encripta de manera que si es par o impar
                                         letrasPar += letra;
                                     } else {
                                         letrasImpar += letra;
                                     }
                                 }
 
-                                textoEncriptado = letrasPar + letrasImpar;
+                                textoEncriptado = letrasPar + letrasImpar;   // Se une primero las letras que resultaron par, y luego las impar
 
                                 System.out.println("Texto encriptado: " + textoEncriptado);
 
@@ -170,7 +170,7 @@ public class ProyectoGrupal {
                                 String textoEncriptadoU = leer.next();
                                 longitudTexto = textoEncriptadoU.length();
 
-                                if (longitudTexto % 2 == 0) {
+                                if (longitudTexto % 2 == 0) {                           //Divide según si la longitud de la palabra es par o impar
                                     division = longitudTexto / 2;
                                 } else {
                                     division = (longitudTexto / 2) + 1;
@@ -179,7 +179,7 @@ public class ProyectoGrupal {
                                 textoPar = textoEncriptadoU.substring(0, division);
                                 textoImpar = textoEncriptadoU.substring(division, longitudTexto);
 
-                                for (int z = 0; z < textoPar.length(); z++) {
+                                for (int z = 0; z < textoPar.length(); z++) {           // Une las letras para formar la palabra encriptada
 
                                     lePar = textoPar.charAt(z);
                                     textoFinal += lePar;
