@@ -26,6 +26,7 @@ public class ProyectoGrupal {
             System.out.println("====    1. CIFRADO     ====");
             System.out.println("====    2. FILTRAR     ====");
             System.out.println("==== 3. CODIGO ENIGMA  ====");
+            System.out.println("====    4. SALIR       ====");
             System.out.print("\nSelecciona una opcion: ");
             opSeleccion = leer.nextInt();
 
@@ -115,6 +116,7 @@ public class ProyectoGrupal {
                 //SECCION CODIGO ENIGMA
                 case 3:
                     int seleccion = 0;
+                    String textoEncriptado = "";
                     do {
                         System.out.println("\n===** CODIGO ENIGMA **====\n");
                         System.out.println("=== 1.  Encriptacion    ===");
@@ -130,6 +132,7 @@ public class ProyectoGrupal {
                                 String palabra = leer.next();
                                 String letrasPar = "",
                                  letrasImpar = "";
+                                textoEncriptado = "";
                                 char letra = ' ';
                                 for (int i = 0; i < palabra.length(); i++) {
                                     letra = palabra.charAt(i);
@@ -140,12 +143,40 @@ public class ProyectoGrupal {
                                     }
                                 }
 
-                                System.out.println("Texto encriptado: " + letrasPar + letrasImpar);
+                                textoEncriptado = letrasPar + letrasImpar;
+                                System.out.println("Texto encriptado: " + textoEncriptado);
 
                                 break;
 
                             case 2:
+                                int longitudTexto = 0;
+                                int division = 0;
+                                String textoPar,
+                                 textoImpar,
+                                 textoFinal = "";
+                                char lePar = ' ',
+                                 leImp = ' ';
+
                                 System.out.println("\n==* Desencriptar texto *==");
+                                longitudTexto = textoEncriptado.length();
+                                division = (longitudTexto / 2) + 1;
+
+                                textoPar = textoEncriptado.substring(0, division);
+                                textoImpar = textoEncriptado.substring(division, longitudTexto);
+
+                                for (int z = 0; z < textoPar.length(); z++) {
+
+                                    lePar = textoPar.charAt(z);
+                                    textoFinal += lePar;
+
+                                    if (z < textoImpar.length()) {
+                                        leImp = textoImpar.charAt(z);
+
+                                        textoFinal += leImp;
+                                    }
+
+                                }
+                                System.out.println("Texto Desencriptado: " + textoFinal);
                                 break;
 
                             case 3:
