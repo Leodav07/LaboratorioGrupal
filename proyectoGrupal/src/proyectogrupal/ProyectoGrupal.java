@@ -19,9 +19,8 @@ public class ProyectoGrupal {
         Scanner leer = new Scanner(System.in);
         leer.useDelimiter("\n");
         int opSeleccion = 0;
-        
+
         // APARTADO MENU PRINCIPAL
-        
         do {
             System.out.println("\n===** MENÚ PRINCIPAL **====\n");
             System.out.println("====    1. CIFRADO     ====");
@@ -31,18 +30,58 @@ public class ProyectoGrupal {
             opSeleccion = leer.nextInt();
 
             switch (opSeleccion) {
-                
+
                 // SECCION CODIGO CESAR
                 case 1:
+                    System.out.println("\n===** SECCION CIFRADO **====\n");
+                    int posiciones = 0;
+                    System.out.print("Ingrese el texto a modificar: ");
+                    String frase = leer.next();
+                    boolean valido = false;
+                    while (!valido) {
+                        System.out.print("Ingrese posiciones a desplazar: ");
+                        posiciones = leer.nextInt();
+                        if (posiciones >= 0) {
+                            valido = true;
+                        }
+
+                    }
+                    String minABC = "abcdefghijklmnopqrstuvwxyz";
+                    String mayABC = minABC.toUpperCase();
+                    int longitudFrase = frase.length();
+                    String fraseCompleta = "";
+                    for (int i = 0; i < longitudFrase; i++) //i se inicializa en 0 para que pueda compararse con la longitud de la frase
+                    {
+                        char letra = frase.charAt(i);//Consigo la letra
+                        if (Character.isUpperCase(letra)) //Si es upperCase
+                        {
+                            int posicionLetraABC = mayABC.indexOf(letra);
+
+                            fraseCompleta += mayABC.charAt((posicionLetraABC + posiciones) % 26);
+
+                        } else if (Character.isLowerCase(letra))//Si no es upper case
+                        {
+                            int posicionLetraABC = minABC.indexOf(letra);
+
+                            fraseCompleta += minABC.charAt((posicionLetraABC + posiciones) % 26); // el %26 es para poder darle vuelta
+
+                        } else //Si es algun caracter extra
+                        {
+                            System.out.println(letra);
+                            fraseCompleta += letra;
+                        }
+                    }
+
+                    System.out.println("La frase encriptada es: " + fraseCompleta);
 
                     break;
 
-                    //SECCION FILTRAR
+                //SECCION FILTRAR
                 case 2:
                     System.out.println("\n===** SECCION FILTRAR **====\n");
 
                     System.out.print("Ingrese una frase: ");
-                    String frase = leer.next();
+                    String frase2 = leer.next();
                     System.out.print("Ingrese longitud minima: ");
                     int longitud = leer.nextInt();
                     char letrasFrase = ' ',
@@ -50,7 +89,7 @@ public class ProyectoGrupal {
                     String palabras = "",
                      palabrasUnidas = "";
 
-                    String fraseReemplazada = frase.replaceAll("[,.]", "");
+                    String fraseReemplazada = frase2.replaceAll("[,.]", "");
 
                     for (int i = 0; i < fraseReemplazada.length(); i++) {
                         letrasFrase = fraseReemplazada.charAt(i);
@@ -73,7 +112,7 @@ public class ProyectoGrupal {
 
                     break;
 
-                    //SECCION CODIGO ENIGMA
+                //SECCION CODIGO ENIGMA
                 case 3:
                     int seleccion = 0;
                     do {
@@ -83,48 +122,49 @@ public class ProyectoGrupal {
                         System.out.println("=== 3.    Regresar      ===");
                         System.out.print("\nSelecciona una opcion: ");
                         seleccion = leer.nextInt();
-                        
-                        switch(seleccion){
+
+                        switch (seleccion) {
                             case 1:
+                                System.out.println("\n==* Encriptar texto *==");
                                 System.out.print("\nIngrese un texto: ");
                                 String palabra = leer.next();
-                                String letrasPar="", letrasImpar="";
-                                char letra=' ';
-                                for(int i = 0; i<palabra.length();i++){
+                                String letrasPar = "",
+                                 letrasImpar = "";
+                                char letra = ' ';
+                                for (int i = 0; i < palabra.length(); i++) {
                                     letra = palabra.charAt(i);
-                                    if(i%2==0){
-                                        letrasPar+=letra;
-                                    }else{
-                                        letrasImpar+=letra;
+                                    if (i % 2 == 0) {
+                                        letrasPar += letra;
+                                    } else {
+                                        letrasImpar += letra;
                                     }
                                 }
-                                
-                                System.out.println("Texto encriptado: "+letrasPar+letrasImpar);
-                                
+
+                                System.out.println("Texto encriptado: " + letrasPar + letrasImpar);
+
                                 break;
-                                
+
                             case 2:
-                                
+                                System.out.println("\n==* Desencriptar texto *==");
                                 break;
-                                
+
                             case 3:
                                 System.out.println("** Regresando.. **");
                                 break;
-                                
+
                             default:
                                 System.out.println("\n**Selecciona una opcion valida..**");
                                 break;
                         }
-                        
 
                     } while (seleccion != 3);
                     break;
-                    
-                    //SALIR
+
+                //SALIR
                 case 4:
                     System.out.println("\n==** SALIENDO DE SISTEMA **==");
                     break;
-                   // OPCION INVALIDA
+                // OPCION INVALIDA
                 default:
                     System.out.println("\n**Selecciona una opcion valida**");
                     break;
