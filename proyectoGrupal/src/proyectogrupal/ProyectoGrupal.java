@@ -79,6 +79,8 @@ public class ProyectoGrupal {
                         
                         switch(seleccion){
                             case 1:
+                                System.out.println("\nIngrese una palabra: ");
+                                String palabra = leer.next();
                                 
                                 break;
                                 
