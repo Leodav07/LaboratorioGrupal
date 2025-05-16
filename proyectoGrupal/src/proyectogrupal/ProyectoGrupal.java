@@ -19,6 +19,9 @@ public class ProyectoGrupal {
         Scanner leer = new Scanner(System.in);
         leer.useDelimiter("\n");
         int opSeleccion = 0;
+        
+        // APARTADO MENU PRINCIPAL
+        
         do {
             System.out.println("\n===** MENÚ PRINCIPAL **====\n");
             System.out.println("====    1. CIFRADO     ====");
@@ -28,10 +31,13 @@ public class ProyectoGrupal {
             opSeleccion = leer.nextInt();
 
             switch (opSeleccion) {
+                
+                // SECCION CODIGO CESAR
                 case 1:
 
                     break;
 
+                    //SECCION FILTRAR
                 case 2:
                     System.out.println("\n===** SECCION FILTRAR **====\n");
 
@@ -67,6 +73,7 @@ public class ProyectoGrupal {
 
                     break;
 
+                    //SECCION CODIGO ENIGMA
                 case 3:
                     int seleccion = 0;
                     do {
@@ -79,8 +86,20 @@ public class ProyectoGrupal {
                         
                         switch(seleccion){
                             case 1:
-                                System.out.println("\nIngrese una palabra: ");
+                                System.out.print("\nIngrese un texto: ");
                                 String palabra = leer.next();
+                                String letrasPar="", letrasImpar="";
+                                char letra=' ';
+                                for(int i = 0; i<palabra.length();i++){
+                                    letra = palabra.charAt(i);
+                                    if(i%2==0){
+                                        letrasPar+=letra;
+                                    }else{
+                                        letrasImpar+=letra;
+                                    }
+                                }
+                                
+                                System.out.println("Texto encriptado: "+letrasPar+letrasImpar);
                                 
                                 break;
                                 
@@ -101,10 +120,11 @@ public class ProyectoGrupal {
                     } while (seleccion != 3);
                     break;
                     
+                    //SALIR
                 case 4:
                     System.out.println("\n==** SALIENDO DE SISTEMA **==");
                     break;
-                    
+                   // OPCION INVALIDA
                 default:
                     System.out.println("\n**Selecciona una opcion valida**");
                     break;
